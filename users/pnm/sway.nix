@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+
   wayland.windowManager.sway =
     let cfg = config.wayland.windowManager.sway.config;
     in {
@@ -83,8 +84,26 @@
 
           "${cfg.modifier}+g" = "mode resize";
 
+          "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          "XF86AudioRaiseVolume" =
+            "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+          "XF86AudioLowerVolume" =
+            "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+
+          "XF86MonBrightnessUp" = "exec brightnessctl s +5%";
+          "XF86MonBrightnessDown" = "exec brightnessctl s 5%-";
         };
       };
     };
-  home.packages = with pkgs; [ mako swayidle swaylock wl-clipboard wofi ];
+
+  home.packages = [
+    pkgs.brightnessctl
+    pkgs.mako
+    pkgs.pulseaudioFull
+    pkgs.swayidle
+    pkgs.swaylock
+    pkgs.wl-clipboard
+    pkgs.wofi
+    pkgs.gnome3.adwaita-icon-theme
+  ];
 }

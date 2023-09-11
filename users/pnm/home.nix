@@ -4,7 +4,7 @@
 
   imports = [
     ./alacritty.nix
-    ./emacs.nix
+    ./development.nix
     ./email.nix
     ./firefox.nix
     ./git.nix
@@ -17,6 +17,8 @@
   home.username = "pnm";
 
   home.homeDirectory = "/home/pnm";
+
+  home.packages = [ pkgs.keepassxc ];
 
   home.sessionVariables = {
     EDITOR = "vim";

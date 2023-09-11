@@ -4,7 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../nixos/profiles/base.nix
-    ../../nixos/profiles/sway.nix
+    ../../nixos/profiles/sound.nix
   ];
 
   networking.hostName = "latitude";
@@ -28,6 +28,7 @@
   networking.useDHCP = false;
   networking.interfaces.wlp2s0.useDHCP = true;
   networking.interfaces.enp0s31f6.useDHCP = true;
+  networking.networkmanager.enable = true;
 
   services.xserver = {
     enable = true;
