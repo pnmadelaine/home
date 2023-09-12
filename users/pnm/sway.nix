@@ -1,6 +1,16 @@
 { config, pkgs, ... }:
 
-{
+let
+
+  status_command = pkgs.writeShellScript "status_command.sh" ''
+    sound_volume=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -o "[0-9]*%" | head -n1)
+    battery_status=$(cat /sys/class/power_supply/BAT0/status)
+    battery_capacity=$(cat /sys/class/power_supply/BAT0/capacity)
+    date_formatted=$(date "+%a %F %H:%M")
+    printf "🔊%s | 🔋%d%% | %s" "$sound_volume" "$battery_capacity" "$date_formatted"
+  '';
+
+in {
 
   wayland.windowManager.sway =
     let cfg = config.wayland.windowManager.sway.config;
@@ -14,6 +24,7 @@
         bars = [{
           fonts.size = 12.0;
           position = "bottom";
+          statusCommand = "while ${status_command}; do sleep 1; done";
         }];
         input = {
           "*" = {
@@ -99,6 +110,7 @@
   home.packages = [
     pkgs.brightnessctl
     pkgs.mako
+    pkgs.noto-fonts-emoji
     pkgs.pulseaudioFull
     pkgs.swayidle
     pkgs.swaylock
