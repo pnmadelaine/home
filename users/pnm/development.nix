@@ -3,8 +3,9 @@
 {
   home.packages = [
     # doom emacs
-    pkgs.ripgrep
     pkgs.fd
+    pkgs.fira-code
+    pkgs.ripgrep
 
     # nix
     pkgs.nixfmt
