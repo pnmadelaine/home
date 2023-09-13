@@ -24,6 +24,7 @@
           "signon.rememberSignons" = false;
         };
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          clearurls
           floccus
           foxyproxy-standard
           i-dont-care-about-cookies

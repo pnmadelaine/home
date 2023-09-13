@@ -2,6 +2,12 @@
 
 let
 
+  lock = pkgs.writeShellScript "lock.sh" ''
+    ${pkgs.playerctl}/bin/playerctl pause
+    pactl set-sink-volume @DEFAULT_SINK@ 0
+    ${pkgs.swaylock}/bin/swaylock
+  '';
+
   status_command = pkgs.writeShellScript "status_command.sh" ''
     sound_volume=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -o "[0-9]*%" | head -n1)
     battery_status=$(cat /sys/class/power_supply/BAT0/status)
@@ -38,7 +44,7 @@ in {
           "${cfg.modifier}+Shift+q" = "kill";
           "${cfg.modifier}+d" = "exec ${cfg.menu}";
           "${cfg.modifier}+Return" = "exec ${cfg.terminal}";
-          "${cfg.modifier}+Backspace" = "exec swaylock";
+          "${cfg.modifier}+Backspace" = "exec ${lock}";
           "${cfg.modifier}+a" = "workspace number 1";
           "${cfg.modifier}+u" = "workspace number 2";
           "${cfg.modifier}+i" = "workspace number 3";
@@ -109,7 +115,6 @@ in {
 
   home.packages = [
     pkgs.brightnessctl
-    pkgs.mako
     pkgs.noto-fonts-emoji
     pkgs.pulseaudioFull
     pkgs.swayidle
