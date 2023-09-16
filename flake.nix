@@ -11,9 +11,11 @@
 
     nur.url = "github:nix-community/nur";
 
+    website.url = "github:pnmadelaine/website";
+
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nur, }:
+  outputs = inputs@{ self, nixpkgs, home-manager, nur, website, }:
     let
       lib = import ./lib { inherit (nixpkgs) lib; };
       system = "x86_64-linux";
@@ -23,6 +25,7 @@
       in {
         registry = { nix = { inherit registry; }; };
         nixPath = { nix = { inherit nixPath; }; };
+        inputs = lib.mkVarModule "inputs" inputs;
       };
       pkgs = import nixpkgs {
         inherit system;

@@ -11,9 +11,7 @@ in {
   services.nginx = {
     enable = true;
     virtualHosts."localhost" = {
-      root = pkgs.writeTextDir "index.html" ''
-        Hello world!
-      '';
+      root = config.inputs.website.packages.${pkgs.system}.default;
     };
   };
   networking.firewall.allowedTCPPorts = [ 80 ];
