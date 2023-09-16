@@ -26,13 +26,6 @@
 
   services.timesyncd.enable = true;
 
-  environment.systemPackages = [
-    pkgs.file
-    pkgs.git
-    pkgs.htop
-    pkgs.pciutils
-    pkgs.tmux
-    pkgs.vim
-    pkgs.wget
-  ];
+  environment.systemPackages =
+    [ pkgs.file pkgs.git pkgs.htop pkgs.pciutils pkgs.tmux pkgs.vim pkgs.wget ];
 }
