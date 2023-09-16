@@ -17,11 +17,12 @@
     let
       lib = import ./lib { inherit (nixpkgs) lib; };
       system = "x86_64-linux";
-      registry = lib.registryFrom { nixpkgs = "nixpkgs"; };
-      nixPath = lib.nixPathFromRegistry { inherit (registry) nixpkgs; };
-      availableModules = {
-        registry = lib.mkVarModule "registry" registry;
-        nixPath = lib.mkVarModule "nixPath" nixPath;
+      availableModules = let
+        registry = lib.registryFrom { nixpkgs = "nixpkgs"; };
+        nixPath = lib.nixPathFromRegistry { inherit (registry) nixpkgs; };
+      in {
+        registry = { nix = { inherit registry; }; };
+        nixPath = { nix = { inherit nixPath; }; };
       };
       pkgs = import nixpkgs {
         inherit system;

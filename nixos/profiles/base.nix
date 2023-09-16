@@ -10,7 +10,6 @@
       automatic = true;
       dates = "daily";
     };
-    inherit (config) registry nixPath;
   };
 
   programs.command-not-found.enable = false;
