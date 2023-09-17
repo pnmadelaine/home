@@ -17,6 +17,9 @@
       "CMakeFiles"
       "cmake_install.cmake"
 
+      # python
+      "__pycache__"
+
       # misc
       "*.swp"
       "*~"

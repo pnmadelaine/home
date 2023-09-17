@@ -18,7 +18,7 @@
 
   home.homeDirectory = "/home/pnm";
 
-  home.packages = [ pkgs.keepassxc ];
+  home.packages = [ pkgs.keepassxc pkgs.signal-desktop ];
 
   home.sessionVariables = {
     EDITOR = "vim";
