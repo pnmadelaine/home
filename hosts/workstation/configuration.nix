@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
     ../../nixos/profiles/base.nix
     ../../nixos/profiles/cache-inria.nix
+    ../../nixos/profiles/cachix.nix
     ../../nixos/profiles/sound.nix
   ];
 

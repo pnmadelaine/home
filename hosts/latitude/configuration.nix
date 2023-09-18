@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../nixos/profiles/base.nix
+    ../../nixos/profiles/cachix.nix
     ../../nixos/profiles/sound.nix
   ];
 
