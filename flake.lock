@@ -110,11 +110,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1695072477,
-        "narHash": "sha256-+gOS/0Gl5D0eSj3yJpYjLQTIauuBNpnU4L6AoJRjm1g=",
+        "lastModified": 1695076788,
+        "narHash": "sha256-NZZYb/zJOJaJc4W4LV5RLJ3S8YEnDylXAp3leIASeoY=",
         "owner": "pnmadelaine",
         "repo": "website",
-        "rev": "6c3e073dd6a6219b1801683d68828386c6965459",
+        "rev": "6f8aad157b4398a4f7bb2145ec192eb4c80ae409",
         "type": "github"
       },
       "original": {
