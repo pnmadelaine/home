@@ -6,15 +6,11 @@ let
 
 in {
 
-  imports = [ ./hardware-configuration.nix ../../nixos/profiles/base.nix ];
-
-  services.nginx = {
-    enable = true;
-    virtualHosts."localhost" = {
-      root = config.inputs.website.packages.${pkgs.system}.default;
-    };
-  };
-  networking.firewall.allowedTCPPorts = [ 80 ];
+  imports = [
+    ./hardware-configuration.nix
+    ../../nixos/profiles/base.nix
+    ../../nixos/profiles/website.nix
+  ];
 
   networking.hostName = "www";
 
