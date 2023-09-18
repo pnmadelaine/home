@@ -1,15 +1,13 @@
 { config, pkgs, ... }:
 
-let
-
-  root = config.inputs.website.packages.${pkgs.system}.default;
-
-in {
+{
 
   services.nginx = {
     enable = true;
-    virtualHosts."www.pnm.tf" = { inherit root; };
-    virtualHosts."pnm.tf" = { inherit root; };
+    virtualHosts."pnm.tf" = {
+      root = config.inputs.website.packages.${pkgs.system}.default;
+      serverAliases = [ "www.pnm.tf" ];
+    };
   };
 
   networking.firewall.allowedTCPPorts = [ 80 ];
