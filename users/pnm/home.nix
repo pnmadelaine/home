@@ -19,7 +19,24 @@
 
   home.homeDirectory = "/home/pnm";
 
-  home.packages = [pkgs.keepassxc pkgs.signal-desktop];
+  home.packages = builtins.attrValues {
+    inherit
+      (pkgs)
+      keepassxc
+      mpv
+      signal-desktop
+      zathura
+      ;
+
+    inherit
+      (pkgs)
+      jless
+      jq
+      python3
+      tree
+      unzip
+      ;
+  };
 
   home.sessionVariables = {
     EDITOR = "vim";
