@@ -1,7 +1,5 @@
 {
-
   inputs = {
-
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
     home-manager = {
@@ -12,35 +10,39 @@
     nur.url = "github:nix-community/nur";
 
     website.url = "github:pnmadelaine/website";
-
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nur, website, }:
-    let
-      lib = import ./lib { inherit (nixpkgs) lib; };
-      system = "x86_64-linux";
-      availableModules = let
-        registry = lib.registryFrom { nixpkgs = "nixpkgs"; };
-        nixPath = lib.nixPathFromRegistry { inherit (registry) nixpkgs; };
-      in {
-        registry = { nix = { inherit registry; }; };
-        nixPath = { nix = { inherit nixPath; }; };
-        inputs = lib.mkVarModule "inputs" inputs;
-      };
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = [ nur.overlay ];
-      };
+  outputs = inputs @ {
+    self,
+    nixpkgs,
+    home-manager,
+    nur,
+    website,
+  }: let
+    lib = import ./lib {inherit (nixpkgs) lib;};
+    system = "x86_64-linux";
+    availableModules = let
+      registry = lib.registryFrom {nixpkgs = "nixpkgs";};
+      nixPath = lib.nixPathFromRegistry {inherit (registry) nixpkgs;};
     in {
-      homeManagerConfigurations = {
-        pnm = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [ ./users/pnm/home.nix ]
-            ++ lib.attrValues { inherit (availableModules) registry; };
-        };
-      };
-      nixosConfigurations =
-        import ./hosts { inherit system lib availableModules; };
+      registry = {nix = {inherit registry;};};
+      nixPath = {nix = {inherit nixPath;};};
+      inputs = lib.mkVarModule "inputs" inputs;
     };
-
+    pkgs = import nixpkgs {
+      inherit system;
+      overlays = [nur.overlay];
+    };
+  in {
+    homeManagerConfigurations = {
+      pnm = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules =
+          [./users/pnm/home.nix]
+          ++ lib.attrValues {inherit (availableModules) registry;};
+      };
+    };
+    nixosConfigurations =
+      import ./hosts {inherit system lib availableModules;};
+  };
 }

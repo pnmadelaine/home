@@ -1,7 +1,8 @@
-{ config, pkgs, ... }:
-
 {
-
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./alacritty.nix
     ./development.nix
@@ -18,7 +19,7 @@
 
   home.homeDirectory = "/home/pnm";
 
-  home.packages = [ pkgs.keepassxc pkgs.signal-desktop ];
+  home.packages = [pkgs.keepassxc pkgs.signal-desktop];
 
   home.sessionVariables = {
     EDITOR = "vim";
@@ -27,10 +28,10 @@
 
   programs.vim = {
     enable = true;
-    settings = { };
+    settings = {};
   };
 
-  programs.man = { enable = true; };
+  programs.man = {enable = true;};
 
   programs.tmux = {
     enable = true;

@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   programs.git = {
     enable = true;
     userName = "Paul-Nicolas Madelaine";
@@ -26,6 +24,6 @@
       ".direnv"
       ".envrc"
     ];
-    extraConfig = { init = { defaultBranch = "main"; }; };
+    extraConfig = {init = {defaultBranch = "main";};};
   };
 }

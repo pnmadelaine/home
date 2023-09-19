@@ -1,10 +1,8 @@
-{ ... }:
-
-{
+{...}: {
   programs.alacritty = {
     enable = true;
     settings = {
-      font = { size = 11; };
+      font = {size = 11;};
       colors = {
         # Default colors
         primary = {

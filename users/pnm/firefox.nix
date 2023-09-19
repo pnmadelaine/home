@@ -1,11 +1,14 @@
-{ pkgs, lib, ... }:
-
 {
+  pkgs,
+  lib,
+  ...
+}: {
   programs.firefox = {
     enable = true;
     profiles = {
       pnm = {
-        settings = let homepage = "https://lichess.org/training";
+        settings = let
+          homepage = "https://lichess.org/training";
         in {
           "app.shield.optoutstudies.enabled" = false;
           "browser.aboutConfig.showWarning" = false;
@@ -34,5 +37,4 @@
       };
     };
   };
-
 }
