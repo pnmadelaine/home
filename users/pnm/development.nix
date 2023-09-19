@@ -8,7 +8,7 @@
     pkgs.ripgrep
 
     # nix
-    pkgs.nixfmt
+    pkgs.alejandra
   ];
 
   programs.emacs.enable = true;
