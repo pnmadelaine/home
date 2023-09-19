@@ -6,6 +6,7 @@
     ../../nixos/profiles/base.nix
     ../../nixos/profiles/cachix.nix
     ../../nixos/profiles/sound.nix
+    ../../nixos/profiles/vpn-inria.nix
   ];
 
   networking.hostName = "latitude";
