@@ -6,6 +6,7 @@
     ../../nixos/profiles/cachix.nix
     ../../nixos/profiles/docker.nix
     ../../nixos/profiles/sound.nix
+    ../../nixos/profiles/xdg.nix
   ];
 
   networking.hostName = "workstation";
