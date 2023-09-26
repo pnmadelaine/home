@@ -8,6 +8,7 @@ in {
   imports = [
     ./hardware-configuration.nix
     ../../nixos/profiles/base.nix
+    ../../nixos/profiles/typhon.nix
     ../../nixos/profiles/website.nix
   ];
 

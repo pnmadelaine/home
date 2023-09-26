@@ -10,6 +10,8 @@
     nur.url = "github:nix-community/nur";
 
     website.url = "github:pnmadelaine/website";
+
+    typhon.url = "github:typhon-ci/typhon/dev-pnm";
   };
 
   outputs = inputs @ {
@@ -18,6 +20,7 @@
     home-manager,
     nur,
     website,
+    typhon,
   }: let
     lib = import ./lib {inherit (nixpkgs) lib;};
     system = "x86_64-linux";
@@ -28,6 +31,7 @@
       registry = {nix = {inherit registry;};};
       nixPath = {nix = {inherit nixPath;};};
       inputs = lib.mkVarModule "inputs" inputs;
+      typhon = typhon.nixosModules.default;
     };
     pkgs = import nixpkgs {
       inherit system;
