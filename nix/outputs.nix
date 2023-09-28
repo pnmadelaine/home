@@ -18,11 +18,11 @@
     inputs = utils.mkVarModule "inputs" sources;
     typhon = typhon.nixosModules.default;
   };
+
+  systems = import ./systems.nix;
 in {
-  homeManagerConfigurations = let
-    system = "x86_64-linux";
-  in {
-    pnm.${system} = home-manager.lib.homeManagerConfiguration {
+  homeManagerConfigurations = nixpkgs.lib.genAttrs systems (system: {
+    pnm = home-manager.lib.homeManagerConfiguration {
       pkgs = import nixpkgs {
         inherit system;
         overlays = [nur.overlay];
@@ -31,7 +31,7 @@ in {
         [../users/pnm/home.nix]
         ++ nixpkgs.lib.attrValues {inherit (availableModules) registry;};
     };
-  };
+  });
 
   nixosConfigurations = import ../hosts {
     inherit (nixpkgs) lib;

@@ -3,5 +3,5 @@ set -eu
 
 user=$(whoami)
 system=$(nix eval --impure --raw --expr 'builtins.currentSystem')
-nix build .#homeManagerConfigurations.$user.$system.activationPackage
+nix build .#homeManagerConfigurations.$system.$user.activationPackage
 ./result/activate
