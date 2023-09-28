@@ -1,4 +1,6 @@
-{lib}: let
+{sources ? import ../sources.nix}: let
+  inherit (sources.nixpkgs) lib;
+
   getLockedInfo = lock: input: let
     x = lock.nodes.root.inputs.${input};
   in
@@ -6,7 +8,7 @@
     then getLockedInfo lock (lib.lists.last x)
     else lock.nodes.${x}.locked;
 
-  lock = builtins.fromJSON (builtins.readFile ../flake.lock);
+  lockFile = builtins.fromJSON (builtins.readFile ../flake.lock);
 
   registryFrom = regs:
     builtins.mapAttrs (name: value: {
@@ -28,7 +30,7 @@
           }
         );
       exact = true;
-    }) (lib.mapAttrs (_: getLockedInfo lock) regs);
+    }) (lib.mapAttrs (_: getLockedInfo lockFile) regs);
 
   urlFromLockedInfo = info:
     if info ? url
@@ -49,8 +51,12 @@
       lib.mkOption {type = lib.types.uniq lib.types.anything;};
     config = {${name} = value;};
   };
-in
-  lib
-  // {
-    inherit lock getLockedInfo registryFrom mkVarModule nixPathFromRegistry;
-  }
+in {
+  inherit
+    lockFile
+    getLockedInfo
+    registryFrom
+    mkVarModule
+    nixPathFromRegistry
+    ;
+}

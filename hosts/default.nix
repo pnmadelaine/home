@@ -1,11 +1,10 @@
 {
-  system,
   lib,
   availableModules,
 }: let
   mkConfig = hostname:
     lib.nixosSystem {
-      inherit system;
+      system = import ./${hostname}/system.nix;
       modules =
         (builtins.attrValues availableModules)
         ++ [./${hostname}/configuration.nix];
