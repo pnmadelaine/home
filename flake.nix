@@ -16,7 +16,7 @@
 
     website.url = "github:pnmadelaine/website";
 
-    typhon.url = "github:typhon-ci/typhon/dev-pnm";
+    typhon.url = "github:typhon-ci/typhon";
   };
 
   outputs = inputs: import ./nix/outputs.nix {sources = inputs;};
