@@ -62,6 +62,22 @@
       enable = true;
       theme = "robbyrussell";
     };
+    initExtra = ''
+      cdd() {
+          TARGET=$(readlink -e "''${1:-"~"}")
+          X="$TARGET"
+          while [ "$X" != "/" ]
+          do
+              if [ -f "$X/shell.nix" ]
+              then
+                  echo 'use nix' > "$X/.envrc"
+                  break
+              fi
+              X=$(dirname "$X")
+          done
+          cd "$TARGET"
+      }
+    '';
   };
 
   programs.bash = {
