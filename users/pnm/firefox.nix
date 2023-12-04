@@ -32,6 +32,7 @@
           foxyproxy-standard
           i-dont-care-about-cookies
           keepassxc-browser
+          noscript
           ublock-origin
         ];
       };
