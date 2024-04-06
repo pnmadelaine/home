@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   accounts.email = {
     maildirBasePath = "/data/pnm/mail";
 
@@ -9,12 +10,16 @@
         realName = "Paul-Nicolas Madelaine";
         userName = "pnm@pnm.tf";
         passwordCommand = "cat /data/pnm/passwords/mailo";
-        imap = {host = "mail.mailo.com";};
-        smtp = {host = "mail.mailo.com";};
+        imap = {
+          host = "mail.mailo.com";
+        };
+        smtp = {
+          host = "mail.mailo.com";
+        };
 
         thunderbird = {
           enable = true;
-          profiles = ["pnm"];
+          profiles = [ "pnm" ];
         };
 
         mbsync = {
@@ -31,7 +36,9 @@
   programs.msmtp.enable = true;
   programs.notmuch = {
     enable = true;
-    hooks = {preNew = "mbsync --all";};
+    hooks = {
+      preNew = "mbsync --all";
+    };
   };
 
   programs.thunderbird = {

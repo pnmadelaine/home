@@ -19,5 +19,5 @@
     typhon.url = "github:typhon-ci/typhon";
   };
 
-  outputs = inputs: import ./nix/outputs.nix {sources = inputs;};
+  outputs = inputs: import ./nix/outputs.nix { sources = inputs; };
 }

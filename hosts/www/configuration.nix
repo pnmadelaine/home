@@ -1,10 +1,8 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{ config, pkgs, ... }:
+let
   keys = import ../../users/pnm/keys.nix;
-in {
+in
+{
   imports = [
     ./hardware-configuration.nix
     ../../nixos/profiles/base.nix
@@ -14,7 +12,10 @@ in {
 
   networking.hostName = "www";
 
-  nix.settings.trusted-users = ["root" "pnm"];
+  nix.settings.trusted-users = [
+    "root"
+    "pnm"
+  ];
 
   documentation.nixos.enable = false;
 
@@ -26,7 +27,7 @@ in {
 
   users.users.pnm = {
     isNormalUser = true;
-    extraGroups = ["wheel"];
+    extraGroups = [ "wheel" ];
     shell = pkgs.bash;
     openssh.authorizedKeys.keys = keys;
   };

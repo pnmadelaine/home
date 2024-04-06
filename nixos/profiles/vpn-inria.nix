@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   networking.openconnect.interfaces.vpninria0 = {
     gateway = "vpn.inria.fr";
     protocol = "anyconnect";

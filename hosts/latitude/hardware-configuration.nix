@@ -7,20 +7,25 @@
   pkgs,
   modulesPath,
   ...
-}: {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
+}:
+{
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "nvme"
+    "usb_storage"
+    "sd_mod"
+    "rtsx_pci_sdmmc"
+  ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/1df1101d-fde4-479d-ac60-ad48d78b54c1";
     fsType = "btrfs";
-    options = ["subvol=nixos"];
+    options = [ "subvol=nixos" ];
   };
 
   boot.initrd.luks.devices."cryptvol".device = "/dev/disk/by-uuid/550f4288-8726-4410-8f8a-2f7a65dc051a";
@@ -28,7 +33,7 @@
   fileSystems."/data" = {
     device = "/dev/disk/by-uuid/1df1101d-fde4-479d-ac60-ad48d78b54c1";
     fsType = "btrfs";
-    options = ["subvol=data"];
+    options = [ "subvol=data" ];
   };
 
   fileSystems."/boot" = {
@@ -36,7 +41,7 @@
     fsType = "vfat";
   };
 
-  swapDevices = [];
+  swapDevices = [ ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

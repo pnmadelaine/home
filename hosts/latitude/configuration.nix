@@ -4,7 +4,8 @@
   lib,
   system,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ../../nixos/profiles/base.nix
@@ -44,11 +45,13 @@
 
   users.users.pnm = {
     isNormalUser = true;
-    extraGroups = ["wheel"];
+    extraGroups = [ "wheel" ];
     shell = pkgs.bash;
   };
 
-  security.pam.services.swaylock = {text = "auth include login";};
+  security.pam.services.swaylock = {
+    text = "auth include login";
+  };
 
   programs.steam.enable = true;
   nixpkgs.config.allowUnfree = true;

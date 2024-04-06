@@ -1,8 +1,5 @@
+{ config, pkgs, ... }:
 {
-  config,
-  pkgs,
-  ...
-}: {
   imports = [
     ./alacritty.nix
     ./development.nix
@@ -20,16 +17,14 @@
   home.homeDirectory = "/home/pnm";
 
   home.packages = builtins.attrValues {
-    inherit
-      (pkgs)
+    inherit (pkgs)
       keepassxc
       mpv
       signal-desktop
       zathura
       ;
 
-    inherit
-      (pkgs)
+    inherit (pkgs)
       jless
       jq
       python3
@@ -45,10 +40,12 @@
 
   programs.vim = {
     enable = true;
-    settings = {};
+    settings = { };
   };
 
-  programs.man = {enable = true;};
+  programs.man = {
+    enable = true;
+  };
 
   programs.tmux = {
     enable = true;

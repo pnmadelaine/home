@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./hardware-configuration.nix
     ../../nixos/profiles/base.nix
@@ -21,10 +22,12 @@
 
   users.users.pnm = {
     isNormalUser = true;
-    extraGroups = ["wheel"];
+    extraGroups = [ "wheel" ];
   };
 
-  security.pam.services.swaylock = {text = "auth include login";};
+  security.pam.services.swaylock = {
+    text = "auth include login";
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
