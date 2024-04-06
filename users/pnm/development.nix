@@ -6,7 +6,7 @@
     pkgs.ripgrep
 
     # nix
-    pkgs.alejandra
+    pkgs.nixfmt-rfc-style
   ];
 
   programs.emacs.enable = true;
