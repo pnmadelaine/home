@@ -9,6 +9,7 @@ let
 in
 {
   home.file = createLinks "/data/pnm" [
+    ".local/state/syncthing"
     ".ssh"
     "Documents"
     "Downloads"

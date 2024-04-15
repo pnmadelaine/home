@@ -7,6 +7,7 @@
     ./firefox.nix
     ./git.nix
     ./persistence.nix
+    ./syncthing.nix
     ./sway.nix
   ];
 
