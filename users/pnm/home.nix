@@ -94,5 +94,7 @@
     nix-direnv.enable = true;
   };
 
+  programs.ssh.enable = true;
+
   home.stateVersion = "23.05";
 }
