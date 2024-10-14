@@ -8,11 +8,16 @@
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
+      "datagrip"
       "slack"
       "vscode"
       "vscode-extension-ms-vscode-remote-remote-ssh"
     ];
-  home.packages = [ pkgs.slack ];
+  home.packages = [
+    (pkgs.callPackage ../../packages/insomnia.nix { })
+    pkgs.jetbrains.datagrip
+    pkgs.slack
+  ];
   programs.ssh.matchBlocks = {
     scylla.hostname = "195.25.209.241";
   };
