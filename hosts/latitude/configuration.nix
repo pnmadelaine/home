@@ -42,7 +42,7 @@
     desktopManager.xfce.enable = true;
     displayManager.startx.enable = true;
     xkb.layout = "fr";
-    xkbVariant = "bepo";
+    xkb.variant = "bepo";
   };
 
   users.users.pnm = {
