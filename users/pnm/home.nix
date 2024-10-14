@@ -76,6 +76,9 @@
           done
           cd "$TARGET"
       }
+      c() {
+          ${pkgs.xclip}/bin/xclip -selection clipboard
+      }
     '';
   };
 
