@@ -24,9 +24,10 @@
   programs.vscode = {
     enable = true;
     extensions = [
-      pkgs.vscode-extensions.asvetliakov.vscode-neovim
       pkgs.vscode-extensions.ms-vscode-remote.remote-ssh
+      pkgs.vscode-extensions.vscodevim.vim
     ];
+    mutableExtensionsDir = false;
     userSettings = {
       evenBetterToml = {
         formatter = {
