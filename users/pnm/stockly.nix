@@ -4,7 +4,6 @@
   pkgs,
   ...
 }:
-
 {
   nixpkgs.config.allowUnfreePredicate =
     pkg:
@@ -21,26 +20,24 @@
       pkgs.vscode-extensions.ms-vscode-remote.remote-ssh
     ];
     userSettings = {
-      # even better toml
       evenBetterToml = {
         formatter = {
-          alignComments = false; # Don't really know what this does
-          alignEntries = false; # Adds too much spaces without breaking the lines
-          allowedBlankLines = 2; # As we have no real use case for more than 2 blank lines
-          arrayAutoCollapse = false; # Prefer multiple lines array
-          arrayAutoExpand = true; # Prefer multiple lines array
-          arrayTrailingComma = true; # For consistency
-          columnWidth = 120; # For consistency with rust
-          indentEntries = true; # For better readability, specifically for `[dependencies.${dep_name}]` entries
-          indentString = "\t"; # We use tabs
-          indentTables = true; # For better readability
-          inlineTableExpand = true; # Prefer multiple lines array
-          reorderKeys = true; # To keep our custom order
-          trailingNewline = true; # For all files
+          alignComments = false;
+          alignEntries = false;
+          allowedBlankLines = 2;
+          arrayAutoCollapse = false;
+          arrayAutoExpand = true;
+          arrayTrailingComma = true;
+          columnWidth = 120;
+          indentEntries = true;
+          indentString = "\t";
+          indentTables = true;
+          inlineTableExpand = true;
+          reorderKeys = true;
+          trailingNewline = true;
         };
-        semanticTokens = true; # For better highlighting
+        semanticTokens = true;
       };
-      # other necessary configuration
       editor.formatOnSave = true;
       git.openRepositoryInParentFolders = "always";
       protoc = {
@@ -51,15 +48,15 @@
       };
       rust-analyzer = {
         completion.autoimport.enable = false;
-        lens.implementations.enable = false; # Avoids code move a few seconds after opening. Feature still available through right click -> Go to implementations
+        lens.implementations.enable = false;
         procMacro.enable = true;
         rustfmt.extraArgs = [
           "--config"
           "comment_width=120,condense_wildcard_suffixes=false,format_code_in_doc_comments=true,format_macro_bodies=true,hex_literal_case=Upper,imports_granularity=One,normalize_doc_attributes=true,wrap_comments=true"
         ];
         diagnostics.disabled = [
-          "unresolved-method" # workaround https://github.com/rust-lang/rust-analyzer/issues/14259
-          "unresolved-field" # workaround https://github.com/rust-lang/rust-analyzer/issues/14259
+          "unresolved-method"
+          "unresolved-field"
         ];
       };
       editor.renderWhitespace = "boundary";
