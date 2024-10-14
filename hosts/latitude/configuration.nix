@@ -39,7 +39,10 @@
 
   services.xserver = {
     enable = true;
+    desktopManager.xfce.enable = true;
     displayManager.startx.enable = true;
+    xkb.layout = "fr";
+    xkbVariant = "bepo";
   };
 
   users.users.pnm = {

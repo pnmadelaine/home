@@ -9,7 +9,7 @@
     ./persistence.nix
     ./stockly.nix
     ./syncthing.nix
-    ./sway.nix
+    # ./sway.nix
   ];
 
   programs.home-manager.enable = true;
