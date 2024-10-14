@@ -10,7 +10,8 @@ in
 {
   home.file = createLinks "/data/pnm" [
     ".local/state/syncthing"
-    ".ssh"
+    ".ssh/id_ed25519"
+    ".ssh/id_ed25519.pub"
     "Documents"
     "Downloads"
     "Music"
