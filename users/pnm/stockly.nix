@@ -19,7 +19,7 @@
     pkgs.slack
   ];
   programs.ssh.matchBlocks = {
-    scylla.hostname = "195.25.209.241";
+    scylla.hostname = "192.168.1.11";
   };
   programs.vscode = {
     enable = true;
