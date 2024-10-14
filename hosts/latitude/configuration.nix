@@ -24,7 +24,7 @@
     timeout = 2;
     systemd-boot = {
       enable = true;
-      configurationLimit = 10;
+      configurationLimit = 2;
     };
     efi = {
       efiSysMountPoint = "/boot";
