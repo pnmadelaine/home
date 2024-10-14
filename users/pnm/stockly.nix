@@ -8,6 +8,7 @@
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
+      "vscode"
       "vscode-extension-ms-vscode-remote-remote-ssh"
     ];
   programs.ssh.matchBlocks = {
@@ -15,7 +16,6 @@
   };
   programs.vscode = {
     enable = true;
-    package = pkgs.vscodium;
     extensions = [
       pkgs.vscode-extensions.ms-vscode-remote.remote-ssh
     ];
